@@ -47,8 +47,9 @@ node serve.ts
 ```
 
 Then open <http://localhost:8080>. `serve.ts` is a small static file server over Node's standard
-library that serves `app/`; `--port 8099` moves it if 8080 is taken. Opening `app/index.html`
-directly from disk works too, since nothing is fetched over the network.
+library that serves `app/`; `--port 8099` moves it if 8080 is taken. Serve it rather than opening
+`app/index.html` from disk: the page is an ES module and browsers refuse module scripts over
+`file://`. Once it is open, every byte it draws comes from `app/` — no request leaves the machine.
 
 Node 22 or newer. Nothing to install.
 
