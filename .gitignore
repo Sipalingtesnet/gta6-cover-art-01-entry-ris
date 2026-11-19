@@ -1,3 +1,4 @@
+# Local build artefacts: main.ts writes the submission bundle here (MAKEFUN_OUTPUT_DIR=out / out2)
 out/
 out2/
 node_modules/

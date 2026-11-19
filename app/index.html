@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VICE COVER STUDIO — GTA 6-style cover art</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23150b1e'/%3E%3Crect x='4' y='5' width='11' height='22' rx='2' fill='%23ffcf7a'/%3E%3Crect x='17' y='5' width='11' height='10' rx='2' fill='%23ff3d86'/%3E%3Crect x='17' y='17' width='11' height='10' rx='2' fill='%2345e0ff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-name">VICE COVER <b>STUDIO</b></span>
+  </div>
+  <p class="brand-tag">multi-panel cover art · graded and lettered in your browser</p>
+  <div class="sizes" id="sizes" role="group" aria-label="Post size">
+    <button type="button" class="chip" data-size="1080x1080">1080 × 1080</button>
+    <button type="button" class="chip" data-size="1080x1350">1080 × 1350</button>
+    <button type="button" class="chip" data-size="1920x1080">1920 × 1080</button>
+  </div>
+  <button type="button" class="export" id="export">EXPORT PNG</button>
+</header>
+
+<main class="workspace">
+  <aside class="rail rail-left">
+    <section class="group">
+      <h2>Photos <span class="note" id="photoNote">2</span></h2>
+      <button type="button" class="tray-add" id="addPhotos">+ ADD PHOTOS</button>
+      <input type="file" id="filePicker" accept="image/*" multiple hidden>
+      <div class="tray-list" id="trayList"></div>
+      <p class="tray-hint">pick a photo, then click a panel</p>
+    </section>
+
+    <section class="group">
+      <h2>Layout</h2>
+      <div class="layout-row" id="layouts"></div>
+    </section>
+
+    <section class="group">
+      <h2>Panels <span class="note" id="panelNote">3</span></h2>
+      <div class="panel-list" id="panelList"></div>
+      <div class="zoom-row">
+        <span>Zoom</span>
+        <input type="range" id="panelZoom" min="100" max="400" value="100" aria-label="Panel zoom">
+        <output id="panelZoomOut">1.0×</output>
+        <button type="button" class="mini" id="resetCrop">Reset</button>
+      </div>
+    </section>
+  </aside>
+
+  <section class="stage">
+    <div class="canvas-wrap" id="canvasWrap">
+      <canvas id="cover" width="1080" height="1080" aria-label="Cover preview"></canvas>
+      <div class="caption-layer" id="captionLayer">
+        <div class="cap-field cap-title" id="capTitle" contenteditable="true" spellcheck="false" role="textbox" aria-label="Title text"></div>
+        <div class="cap-field cap-tag" id="capTag" contenteditable="true" spellcheck="false" role="textbox" aria-label="Tagline text"></div>
+      </div>
+      <div class="drop-veil" id="dropVeil"><span>DROP PHOTOS ONTO THE COVER</span></div>
+    </div>
+    <p class="status" id="status" role="status">Drag a photo to pan · wheel to zoom · click a caption to edit it</p>
+  </section>
+
+  <aside class="rail rail-right">
+    <section class="group">
+      <h2>Grade <span class="note" id="gradeNote">Sunset</span></h2>
+      <div class="grade-row" id="grades"></div>
+      <label class="slider-row">
+        <span>Intensity</span>
+        <input type="range" id="intensity" min="0" max="100" value="85">
+        <output id="intensityOut">85%</output>
+      </label>
+    </section>
+
+    <section class="group">
+      <h2>Caption</h2>
+      <label class="field">
+        <span>Title</span>
+        <input type="text" id="titleText" maxlength="46" value="VICE AFTER DARK" spellcheck="false">
+      </label>
+      <label class="field">
+        <span>Tagline</span>
+        <input type="text" id="taglineText" maxlength="64" value="A CITY THAT NEVER SLEEPS" spellcheck="false">
+      </label>
+      <label class="slider-row">
+        <span>Title size</span>
+        <input type="range" id="titleScale" min="50" max="150" value="100">
+        <output id="titleScaleOut">100%</output>
+      </label>
+      <div class="seg" id="titlePos" role="group" aria-label="Title position">
+        <button type="button" class="seg-btn" data-pos="top">Top</button>
+        <button type="button" class="seg-btn" data-pos="middle">Middle</button>
+        <button type="button" class="seg-btn" data-pos="bottom">Bottom</button>
+      </div>
+    </section>
+
+    <section class="group group-last">
+      <h2>Export <span class="note" id="exportSize">1080 × 1080</span></h2>
+      <button type="button" class="export wide" id="export2">DOWNLOAD THE PNG</button>
+      <p class="tiny">Drawn at full size in this tab. No upload, no network.</p>
+    </section>
+  </aside>
+</main>
+
+<script type="module" src="./src/editor.js"></script>
+</body>
+</html>
